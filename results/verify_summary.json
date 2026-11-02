@@ -1,0 +1,17 @@
+{
+ "kw_total_cases": 360114,
+ "kw_total_deferred": 87202,
+ "kw_mismatches": 0,
+ "invariant_violations": {
+  "overlap": 0,
+  "start_before_arrival": 0
+ },
+ "mmk_mae": 0.0015395889171571308,
+ "mmk_max": 0.007182087479125743,
+ "mmk_max_absz": 2.1520109190982892,
+ "tau_star_reduced": 1.1522270299078576,
+ "tau_myopic_reduced": 1.0994811037813534,
+ "prop2_max_abs_diff_derivative": 1.7823074294209817e-08,
+ "prop2_sign_changes_g": 1,
+ "workload_check_abs_err": 0.0
+}
