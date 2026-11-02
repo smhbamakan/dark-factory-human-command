@@ -1,0 +1,27 @@
+digraph G {
+  rankdir=TB; newrank=true;
+  graph [fontname="Liberation Serif", fontsize=12, nodesep=0.45, ranksep=0.5, pad=0.15, splines=spline];
+  node [shape=box, fontname="Liberation Serif", fontsize=11, color=black, penwidth=0.9, margin="0.15,0.08", style=solid];
+  edge [fontname="Liberation Serif", fontsize=10, color=black, penwidth=0.8, arrowsize=0.6];
+  subgraph cluster_p { label="Physical layer"; labeljust=l; style=dashed; color="#666666";
+    cells [label="Autonomous cells (N)\nexceptions: difficulty z, severity s, horizon H"]; }
+  subgraph cluster_m { label="Mediation layer"; labeljust=l; style=dashed; color="#666666";
+    ai [label="AI decision system\n(1) escalation rule δ(u; τ)"];
+    dt [label="Digital twin\n(3) lag ℓ, completeness c, model error ε(t)\n(4b) synthetic drills"]; }
+  subgraph cluster_c { label="Command layer (remote)"; labeljust=l; style=dashed; color="#666666";
+    pool [label="Oversight pool\n(2) k supervisors, dispatch rule"];
+    sup [label="Supervisor state\n(4) skill S, workload w, engagement E"]; }
+  {rank=same; ai; dt}
+  {rank=same; pool; sup}
+  err [label="ERR\nexception-resolution reliability", style=rounded];
+  ecp [label="ECP\ninformed and timely human decision", style="rounded,bold", penwidth=1.6];
+  ar  [label="AR\nauthority readiness", style=rounded];
+  {rank=same; err; ecp; ar}
+  cells -> ai [label=" exception"];
+  ai -> cells [label=" autonomous action", style=dashed];
+  ai -> pool [label=" escalation"];
+  pool -> sup [label=" assignment"];
+  dt -> sup [label=" view, practice"];
+  sup -> err; sup -> ecp; pool -> ar; ai -> err [style=dashed];
+  dt -> ar [style=dotted, label=" lag"];
+}

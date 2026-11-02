@@ -1,0 +1,23 @@
+digraph G {
+  graph [fontname="Liberation Serif", splines=true, outputorder=edgesfirst, pad=0.15];
+  node [fontname="Liberation Serif", fontsize=11, color=black, penwidth=0.9, fixedsize=false, margin="0.06,0.03"];
+  edge [fontname="Liberation Serif", fontsize=9.5, color=black, penwidth=0.75, arrowsize=0.55];
+  shift [label="Shift and shocks", shape=box, style=dashed, pos="0,6!"];
+  tau [label=<Threshold <I>τ</I>(<I>t</I>)>, shape=box, pos="0,4.2!"];
+  k [label=<Staffing <I>k</I>>, shape=box, pos="0,3.0!"];
+  rd [label=<Drill rate <I>r</I><SUB>d</SUB>>, shape=box, pos="0,1.2!"];
+  twin [label=<Twin design <I>ℓ</I>, <I>c</I>>, shape=box, pos="4.6,7.8!"];
+  ex [label=<Exception<BR/><I>z</I>, <I>s</I>, <I>H</I>>, shape=ellipse, pos="2.3,6!"];
+  eps [label=<Twin error <I>ε</I>(<I>t</I>)>, shape=ellipse, style=dashed, pos="2.3,7.6!"];
+  u [label=<AI signal <I>u</I>>, shape=ellipse, pos="4.0,5.2!"];
+  d [label=<Escalation <I>δ</I>>, shape=ellipse, pos="5.6,4.2!"];
+  w [label=<Queue,<BR/>workload <I>w</I>>, shape=ellipse, pos="7.2,3.0!"];
+  E [label=<Engagement <I>E</I>>, shape=ellipse, style=dashed, pos="7.4,6.4!"];
+  S [label=<Skill <I>S</I>>, shape=ellipse, style=dashed, pos="8.4,1.2!"];
+  T [label=<Resolution<BR/>time <I>T</I><SUB>res</SUB>>, shape=ellipse, pos="9.4,4.4!"];
+  Y [label=<Outcome<BR/>CR, PS, EA>, shape=box, peripheries=2, pos="11.2,4.4!"];
+  shift -> ex; shift -> eps; shift -> u; ex -> u; u -> d; tau -> d; d -> w; k -> w;
+  rd -> S; rd -> w [style=dashed]; twin -> E; eps -> E; twin -> T; w -> T; E -> T;
+  E -> Y; S -> Y; T -> Y; eps -> Y; w -> Y [xlabel="vigilance"]; ex -> Y;
+  d -> S [style=dashed, xlabel="practice"]; E -> S [style=dashed];
+}

@@ -1,0 +1,18 @@
+digraph G {
+  rankdir=TB; graph [fontname="Liberation Serif", nodesep=0.35, ranksep=0.32, pad=0.12];
+  node [shape=box, fontname="Liberation Serif", fontsize=11, color=black, penwidth=0.9, margin="0.12,0.05"];
+  edge [fontname="Liberation Serif", fontsize=9.5, color=black, penwidth=0.75, arrowsize=0.55];
+  A [label=<Arrival of exception <I>e</I><BR/>(authority readiness recorded)>];
+  D [label=<<I>u</I><SUB>e</SUB> &gt; <I>τ</I>(<I>t</I>)?>, shape=diamond, margin="0.03,0.02"];
+  AI [label=<AI acts after latency <I>L</I><SUB>e</SUB><BR/>(CR, EA or PS)>];
+  Q [label=<Enqueue by dispatch key<BR/>(FCFS, EDF or severity)>];
+  S [label=<Service start: update <I>S</I>, <I>w</I>;<BR/>draw engagement>];
+  E [label=<Service end: outcome,<BR/>learning, next dispatch>];
+  T [label=<<I>T</I><SUB>res</SUB> + <I>ℓ</I> &lt; <I>H</I><SUB>e</SUB>?>, shape=diamond, margin="0.03,0.02"];
+  CR [label=<CR or EA<BR/>(decision accuracy)>]; PS [label="Protective stop (PS)"];
+  DS [label="Drill scheduled"]; DB [label=<Drill start<BR/>(supervisor idle, queue empty)>]; DE [label="Drill end: skill gain"];
+  A -> D; D -> AI [label=" no"]; D -> Q [label=" yes"]; Q -> S; S -> E; E -> T; T -> CR [label=" yes"]; T -> PS [label=" no"];
+
+  DS -> DB -> DE; S -> DB [style=dotted, label=" interrupts", constraint=false];
+  {rank=same; AI; Q} {rank=same; S; DS} {rank=same; E; DB} {rank=same; T; DE}
+}
