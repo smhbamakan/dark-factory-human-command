@@ -1,0 +1,9 @@
+name: dark-factory-human-command
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - graphviz
+  - pip:
+      - -r requirements.txt
