@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the article below."
+title: "Separating Reliability from Human Command in Dark Factories: code and data"
+version: 0.8.0
+date-released: 2026-11-02
+type: software
+license: MIT
+repository-code: "https://github.com/smhbamakan/dark-factory-human-command"
+keywords:
+  - dark factory
+  - lights-out manufacturing
+  - human-in-command
+  - digital twin
+  - supervisory control
+  - queueing
+  - discrete-event simulation
+  - Industry 5.0
+authors:
+  - family-names: Hosseini Bamakan
+    given-names: Seyed Mojtaba
+    affiliation: "Department of Business Management, Faculty of Economics and Administration, Masaryk University, Brno, Czech Republic"
+    email: smhosseini@muni.cz
+  - family-names: Mirzabagheri
+    given-names: Mahboubeh
+    affiliation: "Department of Management Sciences, Yazd University, Yazd, Iran"
+preferred-citation:
+  type: article
+  title: "Separating Reliability from Human Command in Dark Factories: A Queueing and Digital-Twin Model of AI Escalation"
+  authors:
+    - family-names: Hosseini Bamakan
+      given-names: Seyed Mojtaba
+    - family-names: Mirzabagheri
+      given-names: Mahboubeh
+  status: submitted
+  year: 2026
