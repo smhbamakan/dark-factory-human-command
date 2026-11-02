@@ -1,0 +1,38 @@
+name: reproduce
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install pinned environment
+        run: pip install -r requirements.txt
+      - name: Check that mhc3 reproduces mhc2 exactly
+        run: |
+          python3 code/exp3.py CHECK | tee check.log
+          grep -q "CHECK mismatches: 0" check.log
+      - name: Run verification suite V1-V6
+        run: python3 code/verify.py
+      - name: Check verification results
+        run: |
+          git diff --exit-code -- results/verify_kw.csv
+          python3 - <<'PY'
+          import json
+          s = json.load(open("results/verify_summary.json"))
+          assert s["kw_mismatches"] == 0, s["kw_mismatches"]
+          assert all(v == 0 for v in s["invariant_violations"].values()), s["invariant_violations"]
+          assert s["mmk_max"] < 0.01, s["mmk_max"]
+          assert s["prop2_max_abs_diff_derivative"] < 1e-6
+          print("verification OK:", s["kw_total_deferred"], "escalations, 0 mismatches")
+          PY
